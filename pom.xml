@@ -15,7 +15,7 @@
 	<description>Demo springboot project for household appliances</description>
 
 	<properties>
-		<java.version>15</java.version>
+		<java.version>14</java.version>
 	</properties>
 
 	<dependencies>
