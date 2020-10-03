@@ -9,9 +9,18 @@ to support an "appliance management system"
 - maven
 
 ## Getting Started
-### Build using maven
-Ensure that maven is installed
-1. run `mvnw spring-boot:run` if using command line
+
+### Install Maven
+Install on Linux/AMI
+```
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+mvn --version
+```
+
+### Run application
+use `mvnw spring-boot:run` if using command line
 
 ## Testing it out
 Documentation is available at `<ip>:<port>/swagger-ui.html` 
