@@ -93,6 +93,11 @@ public class ApplianceService {
             return null;
         }
 
+//        try {
+//            return SimpleDateFormat.getDateInstance().parse(date);
+//        } catch (ParseException ex) {
+//            throw new WrongDatePatternException("Wrong date pattern");
+//        }
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
         TemporalAccessor accessor = formatter.parse(date);
         return Date.from(Instant.from(accessor));
