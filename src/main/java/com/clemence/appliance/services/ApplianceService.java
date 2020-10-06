@@ -6,17 +6,22 @@ import com.clemence.appliance.exceptions.ApplianceNotFoundException;
 import com.clemence.appliance.exceptions.WrongDatePatternException;
 import com.clemence.appliance.models.Appliance;
 import com.clemence.appliance.repositories.ApplianceRepository;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.List;
 
@@ -87,10 +92,14 @@ public class ApplianceService {
         if (date == null){
             return null;
         }
-        try {
-            return SimpleDateFormat.getDateInstance().parse(date);
-        } catch (ParseException ex) {
-            throw new WrongDatePatternException("Wrong date pattern");
-        }
+
+//        try {
+//            return SimpleDateFormat.getDateInstance().parse(date);
+//        } catch (ParseException ex) {
+//            throw new WrongDatePatternException("Wrong date pattern");
+//        }
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        TemporalAccessor accessor = formatter.parse(date);
+        return Date.from(Instant.from(accessor));
     }
 }

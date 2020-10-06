@@ -24,5 +24,4 @@ public class Appliance {
     private String model;
     private Date dateBought;
     private String status;
-
 }

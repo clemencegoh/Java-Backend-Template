@@ -35,14 +35,25 @@ public class ApplianceSpecification implements Specification<Appliance> {
             filter.setStatus("");
         }
 
-        // todo: figure out how to include date in this
+        if (filter.getDateBought() == null){
+            p.getExpressions()
+                    .add(cb.and(
+                            cb.like(root.get("serialNumber"),filter.getSerialNumber() + "%"),
+                            cb.like(root.get("brand"),filter.getBrand() + "%"),
+                            cb.like(root.get("model"),filter.getModel() + "%"),
+                            cb.like(root.get("status"),filter.getStatus() + "%")
+                    ));
+            return p;
+        }
+
         p.getExpressions()
                 .add(cb.and(
                         cb.like(root.get("serialNumber"),filter.getSerialNumber() + "%"),
                         cb.like(root.get("brand"),filter.getBrand() + "%"),
                         cb.like(root.get("model"),filter.getModel() + "%"),
-                        cb.like(root.get("status"),filter.getStatus() + "%")
-                        ));
+                        cb.like(root.get("status"),filter.getStatus() + "%"),
+                        cb.lessThanOrEqualTo(root.get("dateBought"), filter.getDateBought())
+                ));
         return p;
     }
 }

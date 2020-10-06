@@ -2,7 +2,6 @@ package com.clemence.appliance.repositories;
 
 import com.clemence.appliance.models.Appliance;
 import com.sun.istack.Nullable;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
